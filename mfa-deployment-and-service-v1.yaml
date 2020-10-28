@@ -1,0 +1,39 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: mfa-api
+  namespace: loopback
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: mfa-api
+      labels:
+        app: mfa-api
+        env: test
+    spec:
+      containers:
+      - image: jogdocker/mfa-service-v1:2020.06.30
+        name: mfa-loopback
+        ports:
+        - containerPort: 3000
+        volumeMounts:
+        - mountPath: /app/server/data
+          name: data-config
+      volumes:
+      - name: data-config
+        configMap:
+          name: data-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mfa-service
+  namespace: loopback
+spec:
+  type: LoadBalancer
+  selector:
+    app: mfa-api
+  ports:
+  - port: 80
+    targetPort: 3000

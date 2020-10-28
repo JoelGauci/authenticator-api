@@ -1,0 +1,90 @@
+{
+  "name": "authenticator",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "account": {
+      "type": "string",
+      "required": true
+    },
+    "issuer": {
+      "type": "string",
+      "id": true,
+      "required": true,
+      "isArray": false
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {
+    "generateCode": {
+      "accepts": [
+        {
+          "arg": "id",
+          "type": "string",
+          "required": true,
+          "description": "issuer identifier",
+          "http": {
+            "source": "path"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "code",
+          "type": "object",
+          "root": true,
+          "description": "6 digit code"
+        }
+      ],
+      "description": "generate a 6 digit code",
+      "http": [
+        {
+          "path": "/:id/code",
+          "verb": "get"
+        }
+      ]
+    },
+    "verifyCode": {
+      "accepts": [
+        {
+          "arg": "id",
+          "type": "string",
+          "required": true,
+          "description": "issuer identifier",
+          "http": {
+            "source": "path"
+          }
+        },
+        {
+          "arg": "code",
+          "type": "string",
+          "required": true,
+          "description": "6 digit code to be verified",
+          "http": {
+            "source": "path"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "status",
+          "type": "object",
+          "root": true,
+          "description": "status code for the code verification"
+        }
+      ],
+      "description": "verify a 6 digit code",
+      "http": [
+        {
+          "path": "/:id/code/:code",
+          "verb": "get"
+        }
+      ]
+    }
+  }
+}

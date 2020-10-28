@@ -1,0 +1,11 @@
+{
+  "ids": {
+    "authenticator": 3
+  },
+  "models": {
+    "authenticator": {
+      "myBank": "{\"account\":\"My Favorite Bank\",\"issuer\":\"myBank\",\"key\":\"ftww joiy vibm kztx xuk4 wj5w 22ey pnos\"}",
+      "other": "{\"account\":\"My Other Authenticator\",\"issuer\":\"other\",\"key\":\"ftww joiy vibm kztx xuk4 wj5w 22ey pnos\"}"
+    }
+  }
+}

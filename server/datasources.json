@@ -1,0 +1,8 @@
+{
+  "inMemDb": {
+    "name": "inMemDb",
+    "localStorage": "",
+    "file": "./server/data/data.json",
+    "connector": "memory"
+  }
+}
